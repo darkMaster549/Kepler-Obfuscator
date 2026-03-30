@@ -1,5 +1,3 @@
--- This Script is Part of the Prometheus Obfuscator by Levno_710
-  
 local keys = {
   reset =      0,
   
@@ -11,34 +9,33 @@ local keys = {
   hidden     = 8,
   
   black     = 30,
-  pink      = 91,
-  red       = 31,
+  pink      = 92,   
+  red       = 92,   
   green     = 32,
-  yellow     = 33,
-  blue      = 34,
-  magenta   = 35,
-  cyan      = 36,
-  grey      = 37,
-  gray      = 37,
-  white     = 97,
+  yellow    = 32,   
+  blue      = 36,   
+  magenta   = 32,   
+  cyan      = 96,  
+  grey      = 32,
+  gray      = 32,
+  white     = 92,  
   
   blackbg   = 40,
-  redbg     = 41,
+  redbg     = 42,   
   greenbg   = 42,
-  yellowbg  = 43,
-  bluebg    = 44,
-  magentabg = 45,
+  yellowbg  = 42,   
+  bluebg    = 46,  
+  magentabg = 42,   
   cyanbg    = 46,
-  greybg    = 47,
-  graybg    = 47,
-  whitebg   = 107,
+  greybg    = 40,
+  graybg    = 40,
+  whitebg   = 42,   
 }
   
 local escapeString = string.char(27) .. '[%dm';
 local function escapeNumber(number)
   return escapeString:format(number)
 end
-
 
 local settings = {
   enabled = true,
