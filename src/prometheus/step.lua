@@ -1,11 +1,5 @@
--- This Script is Part of the Prometheus Obfuscator by Levno_710
---
--- util.lua
---
--- This file Provides the base class for Obfuscation Steps
-
 local logger = require("logger");
-local util = require("prometheus.util");
+local util = require("Kepler.util");
 
 local lookupify = util.lookupify;
 
