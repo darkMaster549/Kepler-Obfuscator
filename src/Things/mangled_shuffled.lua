@@ -1,4 +1,4 @@
-local util = require("prometheus.util");
+local util = require("Kepler.util");
 local chararray = util.chararray;
 
 local VarDigits = chararray("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_");
