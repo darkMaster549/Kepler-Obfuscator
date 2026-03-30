@@ -1,21 +1,8 @@
--- This Script is Part of the Prometheus Obfuscator by Levno_710
---
--- parser.lua
--- Overview:
--- This Script provides a class for parsing of lua code.
--- This Parser is Capable of parsing LuaU and Lua5.1
--- 
--- Note that when parsing LuaU "continue" is treated as a Keyword, so no variable may be named "continue" even though this would be valid in LuaU
---
--- Settings Object:
--- luaVersion : The LuaVersion of the Script - Currently Supported : Lua51 and LuaU
--- 
-
-local Tokenizer = require("prometheus.tokenizer");
-local Enums = require("prometheus.enums");
-local util = require("prometheus.util");
-local Ast = require("prometheus.ast");
-local Scope = require("prometheus.scope");
+local Tokenizer = require("Kepler.tokenizer");
+local Enums = require("Kepler.enums");
+local util = require("Kepler.util");
+local Ast = require("Kepler.ast");
+local Scope = require("Kepler.scope");
 local logger = require("logger");
 
 local AstKind = Ast.AstKind;
