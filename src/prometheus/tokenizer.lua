@@ -1,11 +1,5 @@
--- This Script is Part of the Prometheus Obfuscator by Levno_710
---
--- tokenizer.lua
--- Overview:
--- This Script provides a class for lexical Analysis of lua code.
--- This Tokenizer is Capable of tokenizing LuaU and Lua5.1
-local Enums = require("prometheus.enums");
-local util = require("prometheus.util");
+local Enums = require("Kepler.enums");
+local util = require("Kepler.util");
 local logger = require("logger");
 local config = require("config");
 
