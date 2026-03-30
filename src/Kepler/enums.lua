@@ -1,6 +1,6 @@
 local Enums = {};
 
-local chararray = require("prometheus.util").chararray;
+local chararray = require("Kepler.util").chararray;
 
 Enums.LuaVersion = {
 	LuaU  = "LuaU" ,
