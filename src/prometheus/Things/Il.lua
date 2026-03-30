@@ -1,9 +1,3 @@
--- This Script is Part of the Prometheus Obfuscator by Levno_710
---
--- namegenerators/mangled.lua
---
--- This Script provides a function for generation of weird names consisting of I, l and 1
-
 local MIN_CHARACTERS = 5;
 local MAX_INITIAL_CHARACTERS = 10;
 
