@@ -1,10 +1,5 @@
--- This Script is Part of the Prometheus Obfuscator by Levno_710
---
--- vmstrings.lua
--- This Script contains Constant Strings used in the Bytecode vm
-
-local InstructionKind = require("prometheus.compiler_secure.instructionkind");
-local util = require("prometheus.util");
+local InstructionKind = require("VM.instructionkind");
+local util = require("Kepler.util");
 
 -- Inline Replacements needed:
 -- CONST_INSTRUCTION_KEY_1 = The first 8 bit of the Xor key for the instructions
