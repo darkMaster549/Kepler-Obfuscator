@@ -1,7 +1,3 @@
--- This Script is Part of the Prometheus Obfuscator by Levno_710
---
--- ast.lua
-
 local Ast = {}
 
 local AstKind = {
