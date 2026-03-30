@@ -1,10 +1,5 @@
--- This Script is Part of the Prometheus Obfuscator by Levno_710
---
--- util.lua
--- This file Provides some utility functions
-
 local logger = require("logger");
-local bit32  = require("prometheus.bit").bit32;
+local bit32  = require("Kepler.bit").bit32;
 
 local function lookupify(tb)
 	for _, v in ipairs(tb) do
