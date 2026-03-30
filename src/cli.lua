@@ -4,11 +4,11 @@ local function script_path()
 end
 package.path = script_path() .. "?.lua;" .. package.path;
 
-local Prometheus = require("prometheus");
-Prometheus.Logger.logLevel = Prometheus.Logger.LogLevel.Info;
+local Kepler = require("Kepler");
+Kepler.Logger.logLevel = Kepler.Logger.LogLevel.Info;
 
-Prometheus.Logger.errorCallback = function(...)
-    print(Prometheus.colors(Prometheus.Config.NameUpper .. ": " .. ..., "red"))
+Kepler.Logger.errorCallback = function(...)
+    print(Kepler.colors(Kepler.Config.NameUpper .. ": " .. ..., "red"))
 	os.exit(1);
 end
 
@@ -25,13 +25,13 @@ local function lines_from(file)
       lines[#lines + 1] = line
     end
     return lines
-  end
+end
 
 local config;
 local sourceFile;
 local outFile;
 
-Prometheus.colors.enabled = true;
+Kepler.colors.enabled = true;
 
 local i = 1;
 while i <= #arg do
@@ -39,13 +39,13 @@ while i <= #arg do
     if curr:sub(1, 2) == "--" then
         if curr == "--preset" or curr == "--p" then
             if config then
-                Prometheus.Logger:warn("The config was set multiple times");
+                Kepler.Logger:warn("The config was set multiple times");
             end
 
             i = i + 1;
-            local preset = Prometheus.Presets[arg[i]];
+            local preset = Kepler.Presets[arg[i]];
             if not preset then
-                Prometheus.Logger:error(string.format("A Preset with the name \"%s\" was not found!", tostring(arg[i])));
+                Kepler.Logger:error(string.format("A Preset with the name \"%s\" was not found!", tostring(arg[i])));
             end
 
             config = preset;
@@ -53,29 +53,27 @@ while i <= #arg do
             i = i + 1;
             local filename = tostring(arg[i]);
             if not file_exists(filename) then
-                Prometheus.Logger:error(string.format("The config file \"%s\" was not found!", filename));
+                Kepler.Logger:error(string.format("The config file \"%s\" was not found!", filename));
             end
 
             local content = table.concat(lines_from(filename), "\n");
-            
             local func = loadstring(content);
-            
             setfenv(func, {});
             config = func();
         elseif curr == "--out" or curr == "--o" then
             i = i + 1;
             if(outFile) then
-                Prometheus.Logger:warn("The output file was specified multiple times!");
+                Kepler.Logger:warn("The output file was specified multiple times!");
             end
             outFile = arg[i];
         elseif curr == "--nocolors" then
-            Prometheus.colors.enabled = false;
+            Kepler.colors.enabled = false;
         else
-            Prometheus.Logger:warn(string.format("The option \"%s\" is not valid and therefore ignored"));
+            Kepler.Logger:warn(string.format("The option \"%s\" is not valid and therefore ignored"));
         end
     else
         if sourceFile then
-            Prometheus.Logger:error(string.format("Unexpected argument \"%s\"", arg[i]));
+            Kepler.Logger:error(string.format("Unexpected argument \"%s\"", arg[i]));
         end
         sourceFile = tostring(arg[i]);
     end
@@ -83,16 +81,16 @@ while i <= #arg do
 end
 
 if not sourceFile then
-    Prometheus.Logger:error("No input file was specified!")
+    Kepler.Logger:error("No input file was specified!")
 end
 
 if not config then
-    Prometheus.Logger:warn("No config was specified, falling back to Minify preset");
-    config = Prometheus.Presets.Minify;
+    Kepler.Logger:warn("No config was specified, falling back to Minify preset");
+    config = Kepler.Presets.Minify;
 end
 
 if not file_exists(sourceFile) then
-    Prometheus.Logger:error(string.format("The File \"%s\" was not found!", sourceFile));
+    Kepler.Logger:error(string.format("The File \"%s\" was not found!", sourceFile));
 end
 
 if not outFile then
@@ -104,9 +102,9 @@ if not outFile then
 end
 
 local source = table.concat(lines_from(sourceFile), "\n");
-local pipeline = Prometheus.Pipeline:fromConfig(config);
+local pipeline = Kepler.Pipeline:fromConfig(config);
 local out = pipeline:apply(source, sourceFile);
-Prometheus.Logger:info(string.format("Writing output to \"%s\"", outFile));
+Kepler.Logger:info(string.format("Writing output to \"%s\"", outFile));
 
 local handle = io.open(outFile, "w");
 handle:write(out);
